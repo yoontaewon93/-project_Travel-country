@@ -1,0 +1,52 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+group = 'com.study'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+//JPA가 뭔가요?(What is JPA?)
+//Java Persistence API을 줄여서 JPA라고 합니다.
+
+//Wikipedia - Java Persistence API
+//JPA is a Java programming language application programming interface 
+//specification that describes the management of relational data in applications 
+//using Java Platform, Standard Edition and Java Platform, Enterprise Edition.
+
+//JPA는 자바에서 프로그래밍 인터페이스 명세입니다. 
+//이 명세는 자바 플랫폼을 사용하는 
+//어플리케이션 내부 관계형 데이터의 관리를 설명하기 위한 것입니다.
+
+//Hibernate 하이버네이트 : jdbc API 구현체
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'com.h2database:h2'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	
+	//JSP Setting
+	implementation 'javax.servlet:jstl'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+}
+
+test {
+	useJUnitPlatform()
+}
